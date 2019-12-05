@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OxyGuildLogs</title>
+    <link href="./styles.css" rel="stylesheet"/> 
+  </head>
+  
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+  <body>
+  
+<nav class="navbar">
+
+  <div class="stitle">OxyGuildLogs</div>
+  <div style="height: 7px;"></div>
+   <center><button class="button" onclick="window.open('https://discord.gg/C68ZyPE')">Discord Server</button></center>
+    <div style="height: 7px;"></div>
+  <center><button class="button" onclick="window.open('https://discordapp.com/oauth2/authorize?client_id=450305786103726080&permissions=8&scope=bot')">Invite</button></center>
+    <div style="height: 7px;"></div>
+  <div style="height: 4px;"></div>
+</nav>
+<main>
+  <div class="box">
+    <p class="mtext">OxyGuildLogs automatically logs stats of your server... or the server the bot is in.</p>
+    <i><span class="mtext" style="font-size: 30px;">Bot Info</span></i>
+    <br>
+      <span class="mtext" id="totalguilds">Total Guilds: </span>
+      <br>
+      <span class="mtext" id="totalusers">Total Users: </span>
+      <br>
+      <span class="mtext" id="totalchannels">Total Channels: </span>
+      <br>
+      <span class="mtext" id="totalmsgs">Total Messages: </span>
+      <br>
+      <span class="mtext" id="totalemojis">Total Emotes: </span>
+  </div>
+  <br>
+  </main>
+
+    
+ 
+  </body>
+      <script type="text/javascript" src="https://timothy3773.github.io/OxyGuildLogs-index.html/hi%20im%20testing/discord.11.3.1.min.js"></script>
+      <script type="text/javascript">
+      const client = new Discord.Client()
+      var count = 0
+     client.on('ready', () => {
+        document.getElementById('totalguilds').innerText = `Total Guilds: ${client.guilds.size}`
+        document.getElementById('totalusers').innerText = `Total Users: ${client.users.size}`
+                document.getElementById('totalemojis').innerText = `Total Emotes: ${client.emojis.size}`
+        document.getElementById('totalchannels').innerText = `Total Channels: ${client.channels.size} | Voice: ${client.channels.filter(c => c.type =='voice').size} | Text: ${client.channels.filter(c => c.type == 'text').size} | Categories: ${client.channels.filter(c => c.type == 'category').size}`
+        client.channels.filter(c=>c.type=='text' && c.fetchMessages({limit: 100}).then(d => {
+          document.getElementById('totalmsgs').innerText = `Total Messages: ${count += 1}`
+        }))
+      })
+      function SendMessage(message){
+        client.guilds.get('448939534026014750').channels.get('448939534026014752').send(message)
+      }
+client.on('message', msg => {
+
+    document.getElementById('totalmsgs').innerText = `Total Messages: ${count += 1}`
+
+})
+      client.login(client.token)
+      </script>
+</html>
